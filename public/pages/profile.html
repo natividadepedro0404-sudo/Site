@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Perfil - HYPEX</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-top">
+  <div class="logo"><a class="logo-link" href="/"><h1>HYPEX</h1></a></div>
+      <div class="search-bar">
+        <input type="search" placeholder="Buscar produtos..." aria-label="Buscar produtos">
+        <button type="button"><i class="fas fa-search"></i></button>
+      </div>
+      <nav class="user-nav">
+        <a href="/pages/auth.html" class="nav-link user-entry" id="user-entry"><i class="fas fa-user"></i> Entrar</a>
+        <a href="/pages/favorites.html" class="nav-link"><i class="fas fa-heart"></i> Favoritos</a>
+        <a href="#" class="nav-link cart-icon" id="cart-button">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">0</span>
+          <span class="cart-label">Carrinho</span>
+        </a>
+      </nav>
+    </div>
+    <nav class="categories-nav">
+      <ul>
+        <li><a href="/pages/novidades.html">NOVIDADES</a></li>
+        <li><a href="/pages/roupas.html">ROUPAS</a></li>
+        <li><a href="/pages/calcados.html">CALÇADOS</a></li>
+        <li><a href="/pages/acessorios.html">ACESSÓRIOS</a></li>
+        <li><a href="/pages/ofertas.html">OFERTAS</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="profile-main">
+    <div class="profile-grid">
+      <aside class="profile-card">
+        <div class="profile-avatar">
+          <div class="avatar">H</div>
+        </div>
+        <div class="profile-details">
+          <h2 id="user-name">—</h2>
+          <p class="muted" id="user-email">—</p>
+        </div>
+
+        <hr>
+
+        <h3>Endereço de Recebimento</h3>
+        <form id="address-form" class="address-form">
+          <div class="form-group">
+            <label for="addr">Endereço completo</label>
+            <textarea id="addr" rows="3" placeholder="Rua, número, complemento, bairro, cidade - UF"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar Endereço</button>
+            <button type="button" id="logout-btn" class="btn btn-outline">Sair</button>
+          </div>
+        </form>
+      </aside>
+
+      <section class="orders-card">
+        <h2>Meus Pedidos</h2>
+        <div id="orders-list" class="orders-list">
+          <p class="muted">Carregando pedidos...</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="/js/user.js"></script>
+  <script src="/js/profile.js"></script>
+</body>
+</html>

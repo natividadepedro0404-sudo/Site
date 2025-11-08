@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Painel Admin - HYPEX</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header class="site-header admin-header">
+    <div class="header-top">
+      <div class="logo"><a class="logo-link" href="/"><h1>HYPEX</h1></a></div>
+      <div class="search-bar"><input type="search" placeholder="Buscar..."><button><i class="fas fa-search"></i></button></div>
+      <nav class="user-nav">
+        <a href="/pages/auth.html" class="nav-link user-entry" id="user-entry"><i class="fas fa-user"></i> Entrar</a>
+        <a href="/pages/favorites.html" class="nav-link"><i class="fas fa-heart"></i> Favoritos</a>
+        <a href="#" class="nav-link cart-icon" id="cart-button"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span><span class="cart-label">Carrinho</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <h2>Painel Administrativo</h2>
+    <p>Ferramentas básicas para administrar o site. Certifique-se de estar logado como <strong>admin</strong>.</p>
+
+    <div class="admin-grid">
+      <nav class="admin-nav">
+        <a href="#orders" class="admin-nav-link active" data-section="orders"><i class="fas fa-box"></i> Pedidos</a>
+        <a href="#products" class="admin-nav-link" data-section="products"><i class="fas fa-tshirt"></i> Produtos</a>
+        <a href="#users" class="admin-nav-link" data-section="users"><i class="fas fa-users"></i> Usuários</a>
+        <a href="#coupons" class="admin-nav-link" data-section="coupons"><i class="fas fa-ticket"></i> Cupons</a>
+      </nav>
+
+      <div class="admin-content">
+        <section id="orders" class="admin-section active">
+          <h3>Pedidos</h3>
+          <div id="orders-list" class="admin-list">Carregando pedidos...</div>
+        </section>
+
+        <section id="products" class="admin-section">
+          <div class="section-header">
+            <h3>Produtos</h3>
+            <button type="button" class="btn btn-primary" id="add-product">
+              <i class="fas fa-plus"></i> Novo Produto
+            </button>
+          </div>
+
+          <div id="products-list" class="admin-list">
+            <div class="products-grid"></div>
+          </div>
+
+          <div id="product-modal" class="admin-modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4>Adicionar/Editar Produto</h4>
+                <button class="close-modal">&times;</button>
+              </div>
+              <form id="product-form" class="admin-form">
+                <input type="hidden" name="id">
+                <div class="form-group">
+                  <label for="name">Nome do Produto</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="description">Descrição</label>
+                  <textarea id="description" name="description" rows="3" required></textarea>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="price">Preço (R$)</label>
+                    <input type="number" id="price" name="price" min="0" step="0.01" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="stock">Estoque</label>
+                    <input type="number" id="stock" name="stock" min="0" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Imagens do Produto</label>
+                  <input type="file" name="images" multiple accept="image/*">
+                  <div class="image-preview"></div>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Salvar Produto</button>
+                  <button type="button" class="btn btn-outline close-modal">Cancelar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="users" class="admin-section">
+          <h3>Usuários</h3>
+          <div id="users-list" class="admin-list">(em breve)</div>
+        </section>
+
+        <section id="coupons" class="admin-section">
+          <h3>Cupons</h3>
+          <div id="coupons-list" class="admin-list">(em breve)</div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    .admin-main { max-width:1400px; margin:2rem auto; padding:0 1rem; }
+    .admin-grid { display:grid; grid-template-columns:220px 1fr; gap:2rem; margin-top:2rem; }
+    .admin-nav { background:#fff; padding:1rem; border-radius:8px; border:1px solid var(--gray-200); }
+    .admin-nav-link { display:flex; align-items:center; gap:.5rem; padding:.75rem 1rem; color:var(--text-primary); text-decoration:none; border-radius:6px; }
+    .admin-nav-link:hover { background:var(--gray-100); }
+    .admin-nav-link.active { background:var(--primary); color:var(--secondary); }
+    .admin-content { background:#fff; padding:2rem; border-radius:8px; border:1px solid var(--gray-200); }
+    .admin-section { display:none; }
+    .admin-section.active { display:block; }
+    .section-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; }
+    .admin-form .form-group { margin-bottom:1rem; }
+    .admin-form label { display:block; margin-bottom:.25rem; font-weight:500; }
+    .admin-form input[type=text],
+    .admin-form input[type=number],
+    .admin-form textarea { width:100%; padding:.5rem; border:1px solid var(--gray-300); border-radius:4px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .admin-modal { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.5);
+      align-items:center; justify-content:center; z-index:1000; }
+    .admin-modal .modal-content { background:#fff; padding:2rem; border-radius:8px; width:100%; max-width:600px; }
+    .admin-modal .modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; }
+    .admin-modal .close-modal { background:none; border:none; font-size:1.5rem; cursor:pointer; padding:0; }
+    .image-preview { display:grid; grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:.5rem; margin-top:.5rem; }
+    .image-preview img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:4px; }
+    @media (max-width:768px) {
+      .admin-grid { grid-template-columns:1fr; }
+      .admin-nav { display:flex; overflow-x:auto; padding:.5rem; }
+      .form-row { grid-template-columns:1fr; }
+    }
+  </style>
+
+  <script src="/js/user.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
